@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "livekit-playground"
+version = "0.1.0"
+description = "A playground project for experimenting with LiveKit"
+authors = ["Teodor Georgiev <teodorgeorgiev@proton.me>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12.1"
+livekit-api = "^0.8.2"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+isort = "^5.13.2"
+flake8 = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api" 
