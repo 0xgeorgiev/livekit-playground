@@ -12,7 +12,7 @@ A Python project for experimenting with LiveKit.
 3. Copy `.env.example` to `.env` and fill in your LiveKit credentials
 4. Run the project:
    ```bash
-   poetry run python src/main.py
+   poetry run python livekit_playground/main.py
    ```
 
 ## Development
