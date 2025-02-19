@@ -40,7 +40,7 @@ python main.py start
 python main.py dev --room your-room-name
 
 # Connect to a specific room
-python main.py connect your-room-name
+python main.py connect --roomyour-room-name
 
 # Download required model files
 python main.py download-files
