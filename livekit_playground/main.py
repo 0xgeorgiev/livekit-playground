@@ -48,7 +48,7 @@ async def entrypoint(ctx: JobContext):
     agent.start(ctx.room, participant)
 
     # Initial greeting
-    await agent.say("Здравейте, аз съм Елена от Остеостронг. Как сте?", allow_interruptions=True)
+    await agent.say("Hello, my name is Elena. How can I help you today?", allow_interruptions=True)
 
 if __name__ == "__main__":
     cli.run_app(create_worker_options(prewarm, entrypoint))
