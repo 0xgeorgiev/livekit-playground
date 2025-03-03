@@ -1,41 +1,37 @@
-# Modified agent.py
+"""
+Main entrypoint for the assistant
+"""
 import logging
 from livekit.plugins import silero
-from livekit.agents import JobContext, JobProcess, cli, metrics
-from livekit_playground.agent.agent import create_agent
-from livekit_playground.agent.context import create_initial_context
-from livekit_playground.agent.options import create_worker_options
+from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli
+from livekit_playground.assistant.assistant import create_assistant
+from livekit_playground.assistant.context import create_initial_context
+from livekit_playground.assistant.options import create_worker_options
 
 def prewarm(proc: JobProcess):
+    """
+    Load the VAD model into the userdata of the process
+    """
     proc.userdata["vad"] = silero.VAD.load()
 
 async def entrypoint(ctx: JobContext):
-    print("entrypoint")
-    initial_ctx = create_initial_context()
+    """
+    Entrypoint for the assistant.
+    Executed when the worker is assigned to a room.
+    """
+    print(f"Received job context: {ctx}")
+    # Create the initial cat context
+    initial_chat_ctx = create_initial_context()
+    # Connect to the room with audio only
+    await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
+    # Create the assistant instance
+    assistant = await create_assistant(
+        ctx=ctx,
+        initial_ctx= initial_chat_ctx
+    )
+    # Start the assistant
+    assistant.start(ctx.room)
 
-    # Create the agent instance but don't start it yet
-    agent = await create_agent(ctx, initial_ctx)
-    usage_collector = metrics.UsageCollector()
-
-    @agent.on("metrics_collected")
-    def on_metrics_collected(agent_metrics: metrics.AgentMetrics):
-        metrics.log_metrics(agent_metrics)
-        usage_collector.collect(agent_metrics)
-
-    # Wait for dispatch signal (room assignment)
-    logging.info(f"Waiting for room assignment...")
-    await ctx.wait_for_dispatch()
-
-    logging.info(f"Connecting to room {ctx.room.name}")
-    await ctx.connect()
-
-    # Wait for the first participant
-    participant = await ctx.wait_for_participant()
-    logging.info(f"Starting voice assistant for participant {participant.identity}")
-
-    # Start the agent
-    # agent.start(ctx.room, participant)
-    # await agent.say("Hello, my name is Elena. How can I help you today?", allow_interruptions=True)
 
 if __name__ == "__main__":
     cli.run_app(create_worker_options(prewarm_fnc=prewarm, entrypoint_fnc=entrypoint))

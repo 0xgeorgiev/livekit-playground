@@ -1,16 +1,16 @@
 """
-Agent worker options
+Worker options
 """
 import os
 from typing import Callable
-from livekit.agents import WorkerOptions
+from livekit.agents import WorkerOptions, WorkerType
 from dotenv import load_dotenv
 
 def create_worker_options(prewarm_fnc: Callable, entrypoint_fnc: Callable) -> WorkerOptions:
     """
     Create and return worker options
     """
-    load_dotenv()  # Ensure env vars are loaded
+    load_dotenv()
     
     ws_url = os.getenv("LIVEKIT_SERVER_URL")
     api_key = os.getenv("LIVEKIT_API_KEY")
@@ -23,7 +23,8 @@ def create_worker_options(prewarm_fnc: Callable, entrypoint_fnc: Callable) -> Wo
         entrypoint_fnc=entrypoint_fnc,
         prewarm_fnc=prewarm_fnc,
         agent_name="agent-elena",
-        ws_url=ws_url,
+        ws_url=ws_url, # type: ignore
         api_key=api_key,
-        api_secret=api_secret
+        api_secret=api_secret,
+        worker_type=WorkerType.ROOM
     )
