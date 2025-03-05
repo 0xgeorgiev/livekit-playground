@@ -3,7 +3,8 @@ Eleven Labs text-to-speech configuration
 """
 import os
 from dotenv import load_dotenv
-from livekit.plugins.elevenlabs import Voice, VoiceSettings, tts
+from livekit.plugins.elevenlabs import Voice, tts
+from livekit_playground.tts.voice_settings import voice_settings
 
 load_dotenv()
 
@@ -22,6 +23,7 @@ eleven_labs_tts = tts.TTS(
         id=voice_id,
         name="Elena",
         category="premade",
-        settings=VoiceSettings(stability=0.5, similarity_boost=0.75, style=0.0),
+        settings=voice_settings,
     ),
+    # language="bg"
 )
