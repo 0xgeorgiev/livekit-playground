@@ -1,17 +1,14 @@
 """
 Implementation of Claude Sonnet LLM
 """
-import os
-from dotenv import load_dotenv
 from livekit.plugins import anthropic
+from fluwid_agent.configuration import ANTHROPIC
 
-load_dotenv()
-
-api_key = os.getenv("ANTHROPIC_API_KEY")
-if not api_key:
+# Validate Anthropic API key
+if not ANTHROPIC.api_key:
     raise ValueError("ANTHROPIC_API_KEY environment variable is not set")
 
 anthropic_claude_llm = anthropic.LLM(
-    model="claude-3-5-sonnet-20241022",
-    api_key=api_key
+    model=ANTHROPIC.model,
+    api_key=ANTHROPIC.api_key
 )

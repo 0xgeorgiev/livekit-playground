@@ -3,10 +3,10 @@ Implementation of Assistant
 """
 from livekit.agents import JobContext, llm
 from livekit.agents.pipeline import VoicePipelineAgent
-from livekit_playground.stt.deepgram import deepgram_stt
-from livekit_playground.tts.eleven_labs import eleven_labs_tts
-from livekit_playground.llm.anthropic import anthropic_claude_llm
-from livekit_playground.tools.tools import AssistantTool
+from fluwit_agent.stt.deepgram import deepgram_stt
+from fluwit_agent.tts.eleven_labs import eleven_labs_tts
+from fluwit_agent.llm.anthropic import anthropic_claude_llm
+from fluwit_agent.tools.tools import AssistantTool
 async def create_assistant(ctx: JobContext, initial_ctx: llm.ChatContext) -> VoicePipelineAgent:
     """
     Create and return preconfigured Voice Pipeline Agent

@@ -4,9 +4,9 @@ Main entrypoint for the assistant
 import logging
 from livekit.plugins import silero
 from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli, metrics
-from livekit_playground.assistant.assistant import create_assistant
-from livekit_playground.assistant.contexts import create_initial_inbound_context
-from livekit_playground.assistant.options import create_worker_options
+from fluwid_agent.assistant.assistant import create_assistant
+from fluwid_agent.assistant.contexts import create_initial_inbound_context
+from fluwid_agent.assistant.options import create_worker_options
 
 def prewarm(proc: JobProcess):
     """

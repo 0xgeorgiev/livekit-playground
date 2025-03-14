@@ -1,18 +1,20 @@
 [tool.poetry]
-name = "livekit_playground"
+name = "fluwit_agent"
 version = "0.1.0"
-description = "A playground project for experimenting with LiveKit"
+description = "A Fluwit Agent"
 authors = ["Teodor Georgiev <teodorgeorgiev@proton.me>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12.1"
 python-dotenv = "^1.0.1"
+pymongo = "4.10.1"
 livekit-agents = "^0.12.13"
 livekit-plugins-anthropic = "^0.2.10"
 livekit-plugins-deepgram = "^0.6.19"
 livekit-plugins-elevenlabs = "^0.7.13"
 livekit-plugins-silero = "^0.7.4"
+elevenlabs = "^1.54.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.2.0"
