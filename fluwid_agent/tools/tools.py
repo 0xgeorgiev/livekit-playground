@@ -1,10 +1,18 @@
 """
 Tools for the assistant to use
 """
-from typing import Annotated
-from livekit.agents import llm
+from fluwid_agent.tools.base import BaseTool
+from fluwid_agent.tools.customer_data import CustomerDataTool
+from fluwid_agent.tools.google_calendar import GoogleCalendarTool
 
-class AssistantTool(llm.FunctionContext):
+# Create instances of the tools
+customer_data_tool = CustomerDataTool()
+calendar_tool = GoogleCalendarTool()
+
+# For backward compatibility
+AssistantTool = BaseTool
+
+class AssistantTool(BaseTool):
     """
     Tool for the assistant to use
     """
@@ -97,12 +105,12 @@ class AssistantTool(llm.FunctionContext):
             """
         }
 
-    @llm.ai_callable(description="Get user data by name")
+    @BaseTool.ai_callable(description="Get user data by name")
     def get_user_data(
         self,
-        name: Annotated[
+        name: BaseTool.Annotated[
             str, 
-            llm.TypeInfo(description="The full name of the user written in English to fetch data for")
+            BaseTool.TypeInfo(description="The full name of the user written in English to fetch data for")
         ]
     ) -> str:
         """
