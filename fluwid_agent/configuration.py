@@ -9,8 +9,14 @@ import os
 from dataclasses import dataclass
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
+
+@dataclass
+class DeepgramConfig:
+    """
+    Deepgram STT configuration
+    """
+    api_key: str = os.getenv("DEEPGRAM_API_KEY", "")
 
 
 @dataclass
@@ -24,30 +30,13 @@ class MongoDBConfig:
 
 
 @dataclass
-class DeepgramConfig:
-    """
-    Deepgram speech-to-text configuration
-    """
-    api_key: str = os.getenv("DEEPGRAM_API_KEY", "")
-    model: str = "nova-2-general"
-    language: str = "bg"
-    detect_language: bool = False
-    punctuate: bool = True
-    smart_format: bool = True
-    sample_rate: int = 16000
-    no_delay: bool = True
-    endpointing_ms: int = 25
-    filler_words: bool = True
-    interim_results: bool = True
-
-
-@dataclass
 class ElevenLabsConfig:
     """
     ElevenLabs text-to-speech configuration
     """
     api_key: str = os.getenv("ELEVENLABS_API_KEY", "")
     voice_id: str = os.getenv("ELEVENLABS_VOICE_ID", "")
+    voice_name: str = os.getenv("ELEVENLABS_VOICE_NAME", "")
 
 
 @dataclass
@@ -71,7 +60,6 @@ class AnthropicConfig:
 
 # Create configuration instances
 MONGODB = MongoDBConfig()
-DEEPGRAM = DeepgramConfig()
 ELEVENLABS = ElevenLabsConfig()
 LIVEKIT = LiveKitConfig()
 ANTHROPIC = AnthropicConfig()
@@ -88,10 +76,6 @@ def validate_config():
     # Check MongoDB configuration
     if not MONGODB.cluster:
         missing_configs.append("MONGODB_CLUSTER_URI")
-    
-    # Check Deepgram configuration
-    if not DEEPGRAM.api_key:
-        missing_configs.append("DEEPGRAM_API_KEY")
     
     # Check ElevenLabs configuration
     if not ELEVENLABS.api_key:
