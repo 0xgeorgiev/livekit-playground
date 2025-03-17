@@ -1,12 +1,11 @@
 """
 Main entrypoint for the assistant
 """
-import logging
 from livekit.plugins import silero
-from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli, metrics
-from fluwid_agent.assistant.assistant import create_assistant
-from fluwid_agent.assistant.contexts import create_initial_inbound_context
-from fluwid_agent.assistant.options import create_worker_options
+from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli
+from agent.assistant.voice_pipeline_agent import create_assistant
+from agent.assistant.context import get_outbound_noshow_agent_context
+from agent.worker_options import create_worker_options
 
 def prewarm(proc: JobProcess):
     """
@@ -19,32 +18,23 @@ async def entrypoint(ctx: JobContext):
     Entrypoint for the assistant.
     Executed when the worker is assigned to a room.
     """
-    # Create the initial chat context
-    initial_chat_ctx = create_initial_inbound_context()
+    # Create the initial chat context (no-show outbound agent)
+    initial_chat_ctx = get_outbound_noshow_agent_context()
+    
     # Connect to the room with audio only
     await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
+
+    # Wait for a participant to connect
+    participant = await ctx.wait_for_participant()
+    
     # Create the assistant instance
     assistant = await create_assistant(ctx=ctx, initial_ctx=initial_chat_ctx)
-    # Gather usage metrics
-    usage_collector = metrics.UsageCollector()
 
-    @assistant.on("metrics_collected")
-    def on_metrics_collected(agent_metrics: metrics.AgentMetrics):
-        """
-        Collect and log metrics
-        """
-        metrics.log_metrics(agent_metrics)
-        usage_collector.collect(agent_metrics)
-        
-    # Add usage summary logging on shutdown
-    async def log_usage():
-        summary = usage_collector.get_summary()
-        logging.info(f"Session Usage Summary: {summary}")
-
-    ctx.add_shutdown_callback(log_usage)
-    
     # Start the assistant
-    assistant.start(ctx.room)
+    assistant.start(ctx.room, participant)
+
+    # Greet the participant
+    await assistant.say("Hello!")
 
 if __name__ == "__main__":
     cli.run_app(create_worker_options(prewarm_fnc=prewarm, entrypoint_fnc=entrypoint))
