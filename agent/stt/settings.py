@@ -1,16 +1,13 @@
 """
-Deepgram STT settings
+Settings for Deepgram STT
 """
+from agent.stt.keywords import KEYWORDS
+from agent.stt.keyterms import KEYTERMS
+from agent.config.configuration import DEEPGRAM
 
-DEEPGRAM_SETTINGS = {
-    "model": "nova-2-general",
-    "language": "bg",
-    "detect_language": False,
-    "punctuate": True,
-    "smart_format": True,
-    "sample_rate": 16000,
-    "no_delay": True,
-    "endpointing_ms": 25,
-    "filler_words": True,
-    "interim_results": True,
+DEEPGRAM_STT_SETTINGS = {
+    "model": DEEPGRAM.model,
+    "language": DEEPGRAM.language,
+    "keywords": KEYWORDS,
+    "keyterms": KEYTERMS,
 }

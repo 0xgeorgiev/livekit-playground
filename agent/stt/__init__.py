@@ -1,3 +1,3 @@
 """
-Module for speech-to-text implementations
+Module for STT implementations
 """

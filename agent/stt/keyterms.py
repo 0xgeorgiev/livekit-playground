@@ -1,5 +1,5 @@
 """
-Keyterms for Deepgram speech-to-text recognition in Bulgarian.
+Keyterms for Deepgram STT recognition in Bulgarian.
 
 Keyterms are phrases or terms with associated weights that Deepgram will prioritize recognizing.
 Higher weights (0-1) indicate higher priority for recognition.

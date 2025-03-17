@@ -1,5 +1,5 @@
 """
-Keywords for Deepgram speech-to-text recognition in Bulgarian.
+Keywords for Deepgram STT recognition in Bulgarian.
 
 Keywords are specific words that Deepgram will prioritize recognizing.
 These are typically important words that might be frequently used in your application context.
