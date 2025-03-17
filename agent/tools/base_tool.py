@@ -11,4 +11,4 @@ class BaseTool(llm.FunctionContext):
     their specific functionality.
     """
     def __init__(self) -> None:
-        super().__init__() 
+        super().__init__()
