@@ -1,8 +1,9 @@
 """
 Main entrypoint for the assistant
 """
+from datetime import datetime
 from livekit.plugins import silero
-from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli
+from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli, llm
 from fluwid_agent.worker_options import get_worker_options
 from fluwid_agent.assistant.voice_pipeline_agent import create_assistant
 from fluwid_agent.assistant.context import get_outbound_noshow_agent_context
@@ -30,6 +31,13 @@ async def entrypoint(ctx: JobContext):
     # Create the assistant instance
     assistant = await create_assistant(ctx=ctx, initial_ctx=initial_chat_ctx)
 
+    @assistant.on("user_speech_committed")
+    def on_user_speech_commit(msg: llm.ChatMessage):
+        if isinstance(msg.content, list):
+            msg.content = "\n".join(
+                "[image]" if isinstance(x, llm.ChatImage) else x for x in msg
+            )
+        print(f"[{datetime.now()}] USER:\n{msg.content}\n\n")
     # Start the assistant
     assistant.start(ctx.room, participant)
 

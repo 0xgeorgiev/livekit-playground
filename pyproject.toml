@@ -10,11 +10,11 @@ packages = [{include = "fluwid_agent"}]
 [tool.poetry.dependencies]
 python = "^3.12.1"
 python-dotenv = "^1.0.1"
-pymongo = "4.10.1"
+pymongo = "4.11.2"
 livekit-agents = "^0.12.13"
 livekit-plugins-anthropic = "^0.2.10"
-livekit-plugins-deepgram = "^0.6.19"
-livekit-plugins-elevenlabs = "^0.7.13"
+livekit-plugins-deepgram = "^0.7.0"
+livekit-plugins-elevenlabs = "^0.8.0"
 livekit-plugins-silero = "^0.7.4"
 pytest = "^8.3.5"
 
