@@ -1,3 +1,3 @@
 """
-Module for agent configuration and initialization
+Module for assistant implementations
 """
