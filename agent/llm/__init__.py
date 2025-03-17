@@ -1,3 +1,3 @@
 """
-Module for LLM models
+Module for implementing LLM models
 """
