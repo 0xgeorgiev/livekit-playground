@@ -1,3 +1,3 @@
 """
-Module for text-to-speech implementations
+Module for TTS implementations
 """
