@@ -2,8 +2,8 @@
 Deepgram STT implementation
 """
 from livekit.plugins import deepgram
-from agent.configuration.config import DEEPGRAM
-from agent.stt.settings import DEEPGRAM_STT_SETTINGS
+from fluwid_agent.configuration.config import DEEPGRAM
+from fluwid_agent.stt.settings import DEEPGRAM_STT_SETTINGS
 
 if not DEEPGRAM.api_key:
     raise ValueError("DEEPGRAM_API_KEY environment variable is not set")

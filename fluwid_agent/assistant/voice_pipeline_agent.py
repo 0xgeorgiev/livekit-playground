@@ -3,18 +3,18 @@ Implementation of Voice Pipeline Agent
 """
 from livekit.agents import JobContext, llm
 from livekit.agents.pipeline import VoicePipelineAgent
-from agent.stt.deepgram import get_deepgram_stt
-from agent.tts.eleven_labs import get_eleven_labs_tts
-from agent.llm.anthropic_llm import get_anthropic_llm
-from agent.assistant.settings import ASSISTANT_SETTINGS
+from fluwid_agent.stt.deepgram import get_deepgram_stt
+from fluwid_agent.tts.eleven_labs import get_eleven_labs_tts
+from fluwid_agent.llm.anthropic_llm import get_anthropic_llm
+from fluwid_agent.assistant.settings import ASSISTANT_SETTINGS
 
-async def create_assistant(job_ctx: JobContext, initial_ctx: llm.ChatContext) -> VoicePipelineAgent:
+async def create_assistant(ctx: JobContext, initial_ctx: llm.ChatContext) -> VoicePipelineAgent:
     """
     Create and return preconfigured Voice Pipeline Agent
     """
     try:
         assistant = VoicePipelineAgent(
-            vad=job_ctx.proc.userdata["vad"],
+            vad=ctx.proc.userdata["vad"],
             llm=get_anthropic_llm(),
             stt=get_deepgram_stt(),
             tts=get_eleven_labs_tts(),

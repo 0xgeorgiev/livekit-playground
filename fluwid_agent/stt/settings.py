@@ -1,9 +1,9 @@
 """
 Settings for Deepgram STT
 """
-from agent.stt.keywords import KEYWORDS
-from agent.stt.keyterms import KEYTERMS
-from agent.configuration.config import DEEPGRAM
+from fluwid_agent.stt.keywords import KEYWORDS
+from fluwid_agent.stt.keyterms import KEYTERMS
+from fluwid_agent.configuration.config import DEEPGRAM
 
 DEEPGRAM_STT_SETTINGS = {
     "model": DEEPGRAM.model,

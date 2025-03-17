@@ -19,6 +19,7 @@ A general-purpose voice assistant built with LiveKit's agent framework.
 ## Quick Start
 
 1. Install dependencies:
+
    ```bash
    poetry install
    ```
@@ -40,7 +41,7 @@ python main.py start
 python main.py dev --room your-room-name
 
 # Connect to a specific room
-python main.py connect --roomyour-room-name
+python main.py connect --room your-room-name
 
 # Download required model files
 python main.py download-files

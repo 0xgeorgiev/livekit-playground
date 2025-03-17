@@ -3,9 +3,9 @@ Main entrypoint for the assistant
 """
 from livekit.plugins import silero
 from livekit.agents import JobContext, JobProcess, AutoSubscribe, cli
-from agent.assistant.voice_pipeline_agent import create_assistant
-from agent.assistant.context import get_outbound_noshow_agent_context
-from agent.worker_options import create_worker_options
+from fluwid_agent.worker_options import get_worker_options
+from fluwid_agent.assistant.voice_pipeline_agent import create_assistant
+from fluwid_agent.assistant.context import get_outbound_noshow_agent_context
 
 def prewarm(proc: JobProcess):
     """
@@ -37,4 +37,4 @@ async def entrypoint(ctx: JobContext):
     await assistant.say("Hello!")
 
 if __name__ == "__main__":
-    cli.run_app(create_worker_options(prewarm_fnc=prewarm, entrypoint_fnc=entrypoint))
+    cli.run_app(get_worker_options(prewarm_fnc=prewarm, entrypoint_fnc=entrypoint))

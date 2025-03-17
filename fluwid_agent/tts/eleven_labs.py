@@ -2,8 +2,8 @@
 Eleven Labs TTS impementation
 """
 from livekit.plugins.elevenlabs import tts
-from agent.configuration.config import ELEVENLABS
-from agent.tts.settings import ELEVENLABS_TTS_SETTINGS
+from fluwid_agent.configuration.config import ELEVENLABS
+from fluwid_agent.tts.settings import ELEVENLABS_TTS_SETTINGS
 
 if not ELEVENLABS.api_key:
     raise ValueError("ELEVENLABS_API_KEY environment variable is not set")

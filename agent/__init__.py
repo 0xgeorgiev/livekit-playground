@@ -1,3 +1,0 @@
-"""
-Livekit Voice Pipeline Agent
-"""

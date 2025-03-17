@@ -2,8 +2,8 @@
 Implementation of Anthropic LLM
 """
 from livekit.plugins import anthropic
-from agent.configuration.config import ANTHROPIC
-from agent.llm.settings import ANTHROPIC_LLM_SETTINGS
+from fluwid_agent.configuration.config import ANTHROPIC
+from fluwid_agent.llm.settings import ANTHROPIC_LLM_SETTINGS
 
 try:
     if not ANTHROPIC.api_key:

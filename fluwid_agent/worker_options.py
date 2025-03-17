@@ -3,9 +3,9 @@ Worker options
 """
 from typing import Callable
 from livekit.agents import WorkerOptions, WorkerType
-from agent.configuration.config import LIVEKIT, AGENT
+from fluwid_agent.configuration.config import LIVEKIT, AGENT
 
-def create_worker_options(prewarm_fnc: Callable, entrypoint_fnc: Callable) -> WorkerOptions:
+def get_worker_options(prewarm_fnc: Callable, entrypoint_fnc: Callable) -> WorkerOptions:
     """
     Create and return worker options
     """
