@@ -65,9 +65,18 @@ class AssistantConfiguration:
     fnc_context: Optional[Callable] = None
     turn_detector: Optional[Callable] = None
 
+@dataclass
+class AgentConfiguration:
+    """
+    Agent configuration
+    """
+    name: str = os.getenv("AGENT_NAME", "")
+
+
 
 LIVEKIT = LiveKitConfiguration()
 DEEPGRAM = DeepgramSTTConfiguration()
 ANTHROPIC = AnthropicLLMConfiguration()
 ELEVENLABS = ElevenLabsTTSConfiguration()
 ASSISTANT = AssistantConfiguration()
+AGENT = AgentConfiguration()
