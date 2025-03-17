@@ -2,7 +2,7 @@
 Eleven Labs TTS impementation
 """
 from livekit.plugins.elevenlabs import tts
-from agent.config.configuration import ELEVENLABS
+from agent.configuration.config import ELEVENLABS
 from agent.tts.settings import ELEVENLABS_TTS_SETTINGS
 
 if not ELEVENLABS.api_key:

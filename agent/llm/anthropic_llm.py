@@ -2,7 +2,7 @@
 Implementation of Anthropic LLM
 """
 from livekit.plugins import anthropic
-from agent.config.configuration import ANTHROPIC
+from agent.configuration.config import ANTHROPIC
 from agent.llm.settings import ANTHROPIC_LLM_SETTINGS
 
 try:

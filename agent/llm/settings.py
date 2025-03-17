@@ -1,7 +1,7 @@
 """
 Settings for the LLM models
 """
-from agent.config.configuration import ANTHROPIC
+from agent.configuration.config import ANTHROPIC
 
 ANTHROPIC_LLM_SETTINGS = {
     "model": ANTHROPIC.model,

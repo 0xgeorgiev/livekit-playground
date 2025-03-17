@@ -1,7 +1,7 @@
 """
 Voice settings for the TTS
 """
-from agent.config.configuration import ELEVENLABS
+from agent.configuration.config import ELEVENLABS
 from livekit.plugins.elevenlabs import VoiceSettings, Voice
 
 voice_settings = VoiceSettings(

@@ -2,7 +2,7 @@
 Deepgram STT implementation
 """
 from livekit.plugins import deepgram
-from agent.config.configuration import DEEPGRAM
+from agent.configuration.config import DEEPGRAM
 from agent.stt.settings import DEEPGRAM_STT_SETTINGS
 
 if not DEEPGRAM.api_key:

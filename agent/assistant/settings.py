@@ -1,7 +1,7 @@
 """
 Assistant settings
 """
-from agent.config.configuration import ASSISTANT
+from agent.configuration.config import ASSISTANT
 
 ASSISTANT_SETTINGS = {
     "before_llm_cb": ASSISTANT.before_llm_cb,
